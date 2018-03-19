@@ -1,0 +1,109 @@
+?php
+
+
+
+$servername="localhost";
+$username="root";
+$password="";
+$DB="myapplication";
+
+$link=mysqli_connect($servername,$username,$password,$DB) ;
+if($link->connect_error){
+//die("Connection faild:".$link -> connect_error);
+}else{
+/*echo "Connected auccessfully";
+echo "<br>hello world again";*/
+}
+
+
+
+?>
+
+
+
+
+
+
+<?php
+
+include("Link.php");
+
+ 
+
+ $id = $_POST["id"];
+ $password1=$_POST["pass"];
+ $total=" SELECT * FROM admin WHERE 
+ admin_id LINK '$id' AND password LINK '$password1'";
+ 
+
+ $result = mysqli_query($link ,$total);
+if(mysqli_num_rows($result) > 0) {
+echo "login success !!!!! Welcome user";
+}
+else {
+echo "login not success";
+}
+ 
+  mysqli_close($link);
+
+?>
+
+
+
+
+
+<?php
+include("Link.php");
+
+ 
+
+ $id = $_POST["id"];
+ $code=$_POST["code"];
+ $total=" SELECT * FROM currentteacher 
+ WHERE current_id LINK '$id' AND code LINK '$code'";
+ 
+
+ $result = mysqli_query($link ,$total);
+if(mysqli_num_rows($result) > 0) {
+echo "sigin success !!!!! Welcome user";
+}
+else {
+echo "sigin  not success";
+}
+ 
+  mysqli_close($link);
+
+?>
+
+
+
+<?php
+include("Link.php");
+
+ 
+
+ $id = $_POST["id"];
+ $email=$_POST["Email"];
+ if(strstr($_POST['email'], '@') && strrchr($_POST['email'], '.'))
+
+{
+if($id<>null && $email<>null){
+	 
+     
+ 
+ $conn=" INSERT INTO newteacher (new_id,email) VALUES ('$id','$email') ";
+     
+ if(mysqli_query($link,$conn) )
+ {
+	 echo" data insert success";
+ }else{
+ echo" data insert notsuccess"; }
+	 
+ } 
+
+else
+{
+echo 'Email is not correct';
+}
+mysqli_close($link);
+?>
